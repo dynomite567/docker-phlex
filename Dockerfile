@@ -15,9 +15,9 @@ LABEL build_version="Digitalhigh version:- ${VERSION} Build-date:- ${BUILD_DATE}
 COPY root /
 
 RUN apk update \
-    && apk --no-cache add gettext iptables \
-    && envsubst "$PORTS" < /etc/templates/default > /defaults/default \
-    && chmod 777 /defaults/default
+RUN apk --no-cache add gettext iptables \
+RUN envsubst "$PORTS" < /etc/templates/default > /defaults/default \
+RUN chmod 777 /defaults/default
 
 # ports and volumes
 VOLUME /config
