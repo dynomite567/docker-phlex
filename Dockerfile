@@ -14,10 +14,14 @@ LABEL build_version="Digitalhigh version:- ${VERSION} Build-date:- ${BUILD_DATE}
 # add local files, set custom NGINX directory
 COPY root /
 
-RUN apk update 
-RUN apk --no-cache add gettext iptables 
-RUN envsubst "$PORTS" < /etc/templates/default > /defaults/default 
-RUN chmod 777 /defaults/default
+RUN echo "**** updating os ****" && \
+      apk update 
+RUN echo "**** installing aditional packages ****" && \
+      apk --no-cache add gettext iptables 
+RUN echo "**** Setting up firewall ****" && \
+      envsubst "$PORTS" < /etc/templates/default > /defaults/default 
+RUN chmod 777 /defaults/default && \
+      echo "build complete"
 
 # ports and volumes
 VOLUME /config
