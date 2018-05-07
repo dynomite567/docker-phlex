@@ -1,7 +1,7 @@
 node {
     docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
     
-        git url: "https://github.com/dynomite567/docker-plex-beta-armhf.git", credentialsId: 'GitHub'
+        git url: "https://github.com/dynomite567/docker-phlex-armhf.git", credentialsId: 'GitHub'
     
         stage "Build image"
         def app = docker.build "dynomitecentral/phlex-armhf"
