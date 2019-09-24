@@ -1,0 +1,29 @@
+dist: xenial
+sudo: true
+
+env:
+  matrix:
+    secure: ojFmmJt4MyyRHs/uSKGPsxPt4LesQoYU8N5kwsvUkXGCt5hs2FehAmRIsrYXX3wfuhQIKB+Bi/6W2JjJKE8d9rLEejXmhi/aqfVn0cLSR0XICn/QbwjaopGEaSxEdSSKChkMIZdOkr2CFWCFx4cFK5cpXAYkN9aZHzLodkIBEpXDfu98NWzKMfGK1+sLnlb6AMWUjRkeDBN8yFrP0nyClDsVpEuUwo5O+VLXZacxPiEWRWS3mBJ1yyaFoaI4QF2+TdZcV5Ff7hFjFPwsee2pHdCiOh8kckIwlsHo1vnT05kbNkFJ6nQAcEI/WLvr/kUtIQh1uxaJwvY/qN5+RzlBwVPkxrvcV7ALLUZ5RWpiGxDjWu7onIq+gdjF94ZoaH8TXhRzuO1zl0aIGXw5ur1J1cRu2jiQwyHPBS/BKB9dbMl4PGlhVLZDd8+zoePZGI24GE85xWVsl8dAHDyWYUinhB5SoB9LIeCI8T6RaWXZZRhM4TJn78ygj4APDytUOqBod04LXM/DDU7kJywdMi5o2+Osl2u5wL+NpP6TkXZjZV/zr6axRUydDl1rm4sP7VVdYVuTSWxLZ1dq7v6ZABQZwErwsRa+I+0B4CIYC73ef1olmUJyT3MZno4vEihYDOlJMzgSDkWxo9VJ8bNHCL0zqIuPvypsPf5aTg9g8TewXqs=
+
+services:
+  - docker
+
+addons:
+  apt:
+    packages:
+      - docker-ce
+
+before_install:
+  - sudo docker run --privileged linuxkit/binfmt:v0.6
+  - sudo docker run -d --privileged -p 1234:1234 --name buildkit moby/buildkit:latest --addr tcp://0.0.0.0:1234 --oci-worker-platform linux/amd64 --oci-worker-platform linux/armhf
+  - sudo docker cp buildkit:/usr/bin/buildctl /usr/bin/
+  - export BUILDKIT_HOST=tcp://0.0.0.0:1234
+
+jobs:
+  include:
+    - stage: build and publish image
+      script:
+      - bash ./.build.sh
+
+notifications:
+  email: false
