@@ -1,7 +1,7 @@
 #!/bin/sh
 docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
 
-architectures="arm amd64"
+architectures="arm"
 images=""
 platforms=""
 
