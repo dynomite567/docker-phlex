@@ -35,13 +35,19 @@ jobs:
       - run:
           name: Build arm32v6 image
           command: |
-            docker build -f Dockerfile.circleci -t $DOCKER_USER/$DOCKER_IMAGE:latest .
+            docker build -f Dockerfile.circleci -t $DOCKER_USER/$DOCKER_IMAGE:$CIRCLE_BUILD_NUM .
 
       - run:
           name: Publish images
           command : |
             docker login --username $DOCKER_USER --password $DOCKER_PASSWORD
-            docker push $DOCKER_USER/$DOCKER_IMAGE:latest
+            docker push $DOCKER_USER/$DOCKER_IMAGE:$CIRCLE_BUILD_NUM 
+      -run:
+          name: Update latest image
+          command : |
+            docker manifest create $DOCKER_USER/$DOCKER_IMAGE:latest $DOCKER_USER/$DOCKER_IMAGE:$CIRCLE_BUILD_NUM
+            docker manifest annotate $DOCKER_USER/$DOCKER_IMAGE:latest $DOCKER_USER/$DOCKER_IMAGE:$CIRCLE_BUILD_NUM --os linux --arch arm
+            docker manifest push $DOCKER_USER/$DOCKER_IMAGE:latest
 workflows:
   version: 2
   commit:
