@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/dynomite567/docker-phlex-armhf.svg?style=svg)](https://circleci.com/gh/dynomite567/docker-phlex-armhf)
+
 ## Usage
 
 ```
