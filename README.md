@@ -1,4 +1,3 @@
-
 ## Usage
 
 ```
@@ -8,7 +7,7 @@ docker create \
   -e PGID=<gid> -e PUID=<uid>  \
   -e TZ=<timezone> \
   -p 5666:80 -p 5667:443 \
-  digitalhigh/phlex
+  dynomitecentral/phlex
 ```
 
 ## Parameters
@@ -52,5 +51,9 @@ replacing the self-signed cert.crt and cert.key files.
 
 ## Versions
 
+<<<<<<< HEAD
 + **21.05.18:** Update for V2.
+=======
++ **12.09.19:** Updated for V2
+>>>>>>> aa4e27d17e0dae369afab7620df30a5a0e025bd0
 + **20.03.17:** Initial release date.
