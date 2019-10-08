@@ -41,8 +41,9 @@ jobs:
           name: Publish images
           command : |
             docker login --username $DOCKER_USER --password $DOCKER_PASSWORD
-            docker push $DOCKER_USER/$DOCKER_IMAGE:$CIRCLE_BUILD_NUM 
-      -run:
+            docker push $DOCKER_USER/$DOCKER_IMAGE:$CIRCLE_BUILD_NUM
+
+      - run:
           name: Update latest image
           command : |
             docker manifest create $DOCKER_USER/$DOCKER_IMAGE:latest $DOCKER_USER/$DOCKER_IMAGE:$CIRCLE_BUILD_NUM
