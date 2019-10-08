@@ -1,5 +1,5 @@
 FROM linuxserver/nginx:latest
-MAINTAINER Digitalhigh
+LABEL maintainer="DynomiteCentral"
 
 # set version label
 ARG BUILD_DATE

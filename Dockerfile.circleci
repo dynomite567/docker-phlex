@@ -1,5 +1,7 @@
-FROM lsioarmhf/nginx-armhf:latest
-MAINTAINER Digitalhigh
+FROM linuxserver/nginx:latest
+LABEL maintainer="DynomiteCentral"
+
+COPY qemu-arm-static /usr/bin/
 
 # set version label
 ARG BUILD_DATE
