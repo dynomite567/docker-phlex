@@ -26,7 +26,7 @@ jobs:
           tar -xvf x86_64_qemu-${target_arch}-static.tar.gz
         done
     - name: Build arm32v6 image
-      run: docker build -f Dockerfile.armhf -t ${{ secrets.DOCKER_USER }}/${{ secrets.DOCKER_IMAGE }}:arm32v6-latest .
+      run: docker build -f Dockerfile.ci -t ${{ secrets.DOCKER_USER }}/${{ secrets.DOCKER_IMAGE }}:arm32v6-latest .
     - name: Publish images
       run: |
         docker login --username ${{ secrets.DOCKER_USER }} --password ${{ secrets.DOCKER_PASS }}
