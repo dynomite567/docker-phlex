@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/dynomite567/docker-phlex-armhf.svg?style=svg)](https://circleci.com/gh/dynomite567/docker-phlex-armhf)
+[![Github Actions](https://github.com/dynomite567/docker-phlex-armhf/workflows/push-build/badge.svg)](https://github.com/dynomite567/docker-phlex-armhf/actions?workflow=push-build)
 
 ## Usage
 
